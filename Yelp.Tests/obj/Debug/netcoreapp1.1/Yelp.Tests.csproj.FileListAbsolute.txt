@@ -1,0 +1,13 @@
+/Users/Guest/Desktop/Yelp.Solution/Yelp.Tests/bin/Debug/netcoreapp1.1/Yelp.Tests.deps.json
+/Users/Guest/Desktop/Yelp.Solution/Yelp.Tests/bin/Debug/netcoreapp1.1/Yelp.Tests.runtimeconfig.json
+/Users/Guest/Desktop/Yelp.Solution/Yelp.Tests/bin/Debug/netcoreapp1.1/Yelp.Tests.runtimeconfig.dev.json
+/Users/Guest/Desktop/Yelp.Solution/Yelp.Tests/obj/Debug/netcoreapp1.1/Yelp.Tests.AssemblyInfo.cs
+/Users/Guest/Desktop/Yelp.Solution/Yelp.Tests/bin/Debug/netcoreapp1.1/Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+/Users/Guest/Desktop/Yelp.Solution/Yelp.Tests/bin/Debug/netcoreapp1.1/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+/Users/Guest/Desktop/Yelp.Solution/Yelp.Tests/bin/Debug/netcoreapp1.1/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+/Users/Guest/Desktop/Yelp.Solution/Yelp.Tests/bin/Debug/netcoreapp1.1/Yelp.Tests.dll
+/Users/Guest/Desktop/Yelp.Solution/Yelp.Tests/bin/Debug/netcoreapp1.1/Yelp.Tests.pdb
+/Users/Guest/Desktop/Yelp.Solution/Yelp.Tests/bin/Debug/netcoreapp1.1/Yelp.dll
+/Users/Guest/Desktop/Yelp.Solution/Yelp.Tests/bin/Debug/netcoreapp1.1/Yelp.pdb
+/Users/Guest/Desktop/Yelp.Solution/Yelp.Tests/obj/Debug/netcoreapp1.1/Yelp.Tests.dll
+/Users/Guest/Desktop/Yelp.Solution/Yelp.Tests/obj/Debug/netcoreapp1.1/Yelp.Tests.pdb
