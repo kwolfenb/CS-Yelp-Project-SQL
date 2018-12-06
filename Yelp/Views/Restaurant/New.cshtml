@@ -1,0 +1,45 @@
+@{
+  Layout = "_Layout";
+}
+
+<div class="container">
+<h3 class="text-center">Fill Out to Add a New Animal</h3>
+<br>
+    <div class="form-group row">
+        <form action="/restaurant/index" method="post">
+            <div class="col col-md-3">
+                <label for="restaurantName">Restaurant Name:</label>
+                <input class="form-control" id="restaurantName" name="restaurantName" type="text" required><br>
+            </div>  
+           
+            <div class="col col-md-3">
+                <label for="restaurantAddress">Restaurant Address:</label>
+                <input class="form-control" id="restaurantAddress" name="restaurantAddress" type="text" required><br>
+            </div>  
+
+            <div class="col col-md-3">
+                <label for="restaurantPhone">Restaurant Phone:</label>
+                <input class="form-control" id="restaurantPhone" name="restaurantPhone" type="text" required><br>
+            </div>  
+
+            <div class="col col-md-3">
+            <select name="restaurantCuisine">
+                <option class="dropdown-item" name="restaurantCuisine" value=1>Japanese</option>
+                <option class="dropdown-item" name="restaurantCuisine" value=2>Sports Bar</option>
+                <option class="dropdown-item" name="restaurantCuisine" value=3>Thai</option>
+                <option class="dropdown-item" name="restaurantCuisine" value=4>American</option>
+                <option class="dropdown-item" name="restaurantCuisine" value=5>Mexican</option>
+                <option class="dropdown-item" name="restaurantCuisine" value=6>Italian</option>
+                <option class="dropdown-item" name="restaurantCuisine" value=7>Other</option>
+            </select>
+            </div> 
+            <br>
+    </div>
+    <div class="form-group row">
+
+        <button class="btn btn-primary btn-lg" type="submit">Add</button>
+        <br>
+            <h3><a href='/'>Return to Main Page</a></h3>
+        </form>
+    </div>
+</div>

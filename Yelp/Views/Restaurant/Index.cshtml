@@ -1,0 +1,14 @@
+@{
+    Layout = "_Layout";
+}
+<h2>All Restaurants</h2>
+
+<ul>
+@foreach(var restaurant in Model)
+{
+  <li><a href="/restaurant/show/@restaurant.GetId()">@restaurant.GetName()</a></li>
+}
+</ul>
+
+<h4>Click <a href="/restaurant/new">HERE</a> to add new restaurant.</h4>
+<h4>Click <a href="/">HERE</a> to return to main page.</h4>

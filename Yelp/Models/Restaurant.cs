@@ -11,19 +11,19 @@ namespace Yelp.Models
         private string _name;
         private string _address;
         private string _phone;
-        private string _cuisine;
+        private int _cuisineId;
 
         public Restaurant (string name)
         {
             _name = name;
         }
 
-        public Restaurant (string name, string address, string phone, string cuisine)
+        public Restaurant (string name, string address, string phone, int cuisineId)
         {
             _name = name;
             _address = address;
             _phone = phone;
-            _cuisine = cuisine;
+            _cuisineId = cuisineId;
         }
 
         public void SetId(int id)
@@ -31,17 +31,30 @@ namespace Yelp.Models
             _id = id;
         }
 
+        //Getters
         public string GetName()
         {
             return _name;
         }
+
+                public string GetAddress()
+        {
+            return _address;
+        }
+
+        public string GetPhone()
+        {
+            return _phone;
+        }
+
+
 
         public int GetId()
         {
             return _id;
         }
 
-          public override bool Equals(System.Object otherRestaurant)
+        public override bool Equals(System.Object otherRestaurant)
         {
             if (!(otherRestaurant is Restaurant))
             {
@@ -75,9 +88,9 @@ namespace Yelp.Models
                 string restaurantName = rdr.GetString(1);
                 string restaurantAddress = rdr.GetString(2);
                 string restaurantPhone = rdr.GetString(3);
-                string restaurantCuisine = rdr.GetString(4);
+                int restaurantCuisineId = rdr.GetInt32(4);
                 
-                Restaurant newRestaurant = new Restaurant(restaurantName, restaurantAddress, restaurantPhone, restaurantCuisine);
+                Restaurant newRestaurant = new Restaurant(restaurantName, restaurantAddress, restaurantPhone, restaurantCuisineId);
                 newRestaurant.SetId(restaurantId);
                 allRestaurants.Add(newRestaurant);
             }
@@ -89,17 +102,48 @@ namespace Yelp.Models
             return allRestaurants;
         }
 
+        public static Restaurant FindById(int restaurantId)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM restaurant WHERE id='" + restaurantId + "';";
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+            string restaurantName="";
+            string restaurantAddress="";
+            string restaurantPhone="";
+            int restaurantCuisineId=0;
+             
+            while(rdr.Read())
+            {
+                restaurantName = rdr.GetString(1);
+                restaurantAddress = rdr.GetString(2);
+                restaurantPhone = rdr.GetString(3);
+                restaurantCuisineId = rdr.GetInt32(4);
+            }
+
+            Restaurant newRestaurant = new Restaurant(restaurantName, restaurantAddress, restaurantPhone, restaurantCuisineId);
+            newRestaurant.SetId(restaurantId);
+            conn.Close();
+            if (conn != null)
+            {
+            conn.Dispose();
+            }
+            return newRestaurant;
+        }
+
          public void Save()
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO restaurant (name, address, phone, cuisine) VALUES (@RestaurantName, @RestaurantAddress, @RestaurantPhone, @RestaurantCuisine);";
+            cmd.CommandText = @"INSERT INTO restaurant (name, address, phone, cuisine) VALUES (@RestaurantName, @RestaurantAddress, @RestaurantPhone, @RestaurantCuisineId);";
 
             cmd.Parameters.AddWithValue("@RestaurantName", this._name);
             cmd.Parameters.AddWithValue("@RestaurantAddress", this._address);
             cmd.Parameters.AddWithValue("@RestaurantPhone", this._phone);
-            cmd.Parameters.AddWithValue("@RestaurantCuisine", this._cuisine);
+            cmd.Parameters.AddWithValue("@RestaurantCuisineId", this._cuisineId);
 
             cmd.ExecuteNonQuery();   
             _id = (int) cmd.LastInsertedId;
@@ -110,7 +154,7 @@ namespace Yelp.Models
             }
         }
 
-        public static void DeleteAll()
+        public static void ClearAll()
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
@@ -127,3 +171,4 @@ namespace Yelp.Models
 
     }
 }
+ 
