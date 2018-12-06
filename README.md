@@ -18,8 +18,8 @@ _A C# application that is connected to a SQL database with tables for Restaurant
 
 ## Support and contact details
 
-*_Kenny Wolfenberger - kennywolfenberger@gmail.com_
-*_Daniel Lira - devidra87@gmail.com_
+* _Kenny Wolfenberger - kennywolfenberger@gmail.com_
+* _Daniel Lira - devidra87@gmail.com_
 
 ### Specs
 | Spec | Input | Output |
