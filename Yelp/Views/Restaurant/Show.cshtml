@@ -1,10 +1,18 @@
 @{
     Layout = "_Layout";
 }
-<h1>Restaurant Name:@Model.GetName()</h1>
+<h1>Restaurant Name:@Model["restaurant"].GetName()</h1>
 
 <ul>
-<li>Restaurant Address:@Model.GetAddress()</li>
-<li>Restaurant Phone:@Model.GetPhone()</li>
-<li>Restaurant Id:@Model.GetId()</li>
+<li>Restaurant Address: @Model["restaurant"].GetAddress()</li>
+<li>Restaurant Phone: @Model["restaurant"].GetPhone()</li>
+<li>Cuisine: @Model["cuisine"].GetName()</li>
 </ul>
+
+
+
+<img src="~/img/@(@Model["restaurant"].GetCuisineId() + ".jpg")">
+
+<h4>Click<a href="/restaurant/delete/@Model["restaurant"].GetId()"> here </a> to Delete this restaurant</h4>
+
+<h3><a href="/">Back to Home page</a></h3>

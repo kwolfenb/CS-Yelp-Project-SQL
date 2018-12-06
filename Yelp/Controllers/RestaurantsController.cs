@@ -9,7 +9,8 @@ namespace Yelp.Controllers
      [HttpGet("/restaurant/new")]
      public ActionResult New()
      {
-      return View();   
+        List<Cuisine> allCuisines = Cuisine.GetAll();
+        return View(allCuisines);   
      }   
 
 
@@ -32,9 +33,20 @@ namespace Yelp.Controllers
     
     [HttpGet("/restaurant/show/{restaurantId}")]
     public ActionResult Show(int restaurantId)
-    {
+    {   
         Restaurant resultRestaurant = Restaurant.FindById(restaurantId);
-        return View(resultRestaurant);
+        int cuisineId = resultRestaurant.GetCuisineId();
+        Cuisine resultCuisine = Cuisine.FindById(cuisineId);
+        Dictionary <string, object> model = new Dictionary <string, object> {};
+        model.Add("restaurant", resultRestaurant);
+        model.Add("cuisine", resultCuisine);  
+        return View(model);
+    }
+    [HttpGet("/restaurant/delete/{restaurantId}")]
+    public ActionResult Delete(int restaurantId)
+    {   
+        Restaurant.DeleteById(restaurantId);
+        return RedirectToAction("Main");
     }
      
     }

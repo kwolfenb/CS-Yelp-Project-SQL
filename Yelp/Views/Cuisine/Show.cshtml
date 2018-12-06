@@ -1,0 +1,22 @@
+@using Yelp.Models;
+@{
+    Layout = "_Layout";
+}
+
+<h2>@Model["cuisine"].GetName() </h2>
+
+@if(@Model["restaurantList"].Count == null)
+{
+  <h3>There are no restaurants in category yet. Click <a href="/restaurant/new"> here</a> to add one!</h3>
+}
+else
+{
+  foreach(Restaurant restaurant in @Model["restaurantList"])
+  {
+    <p><a href="/restaurant/show/@restaurant.GetId()">@restaurant.GetName()</a></p>
+  }
+
+}
+
+<h3><a href="/cuisine/index">Back to all cuisines</a></h3>
+<h3><a href="/">Back to Home page</a></h3>

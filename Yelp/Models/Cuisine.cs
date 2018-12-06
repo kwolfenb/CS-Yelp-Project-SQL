@@ -87,6 +87,31 @@ namespace Yelp.Models
             }
         }
 
+        public static Cuisine FindById(int cuisineId)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM cuisine WHERE id='" + cuisineId + "';";
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+            string cuisineName="";
+             
+            while(rdr.Read())
+            {
+                cuisineName = rdr.GetString(1);
+            }
+
+            Cuisine newCuisine = new Cuisine(cuisineName);
+            newCuisine.SetId(cuisineId);
+            conn.Close();
+            if (conn != null)
+            {
+            conn.Dispose();
+            }
+            return newCuisine;
+        }
+
         public override bool Equals(System.Object otherCuisine)
         {
             if (!(otherCuisine is Cuisine))

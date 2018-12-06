@@ -37,7 +37,12 @@ namespace Yelp.Models
             return _name;
         }
 
-                public string GetAddress()
+        public int GetCuisineId()
+        {
+            return _cuisineId;
+        }
+
+        public string GetAddress()
         {
             return _address;
         }
@@ -131,6 +136,46 @@ namespace Yelp.Models
             conn.Dispose();
             }
             return newRestaurant;
+        }
+        public static void DeleteById(int restaurantId)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM restaurant WHERE id='" + restaurantId + "';";
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if (conn != null)
+            {
+            conn.Dispose();
+            }
+        }
+
+        public static List<Restaurant> FindByCuisineId(int cuisineId)
+        {
+            List<Restaurant> restaurantsByCuisine = new List<Restaurant>{};
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"SELECT * FROM restaurant WHERE cuisine='" + cuisineId + "';";
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+
+            while(rdr.Read())
+            {
+                string restaurantName = rdr.GetString(1);
+                string restaurantAddress = rdr.GetString(2);
+                string restaurantPhone = rdr.GetString(3);
+                int restaurantCuisineId = rdr.GetInt32(4);
+                Restaurant newRestaurant = new Restaurant(restaurantName, restaurantAddress, restaurantPhone, restaurantCuisineId);
+                restaurantsByCuisine.Add(newRestaurant);
+            }
+
+            conn.Close();
+            if (conn != null)
+            {
+            conn.Dispose();
+            }
+            return restaurantsByCuisine;
         }
 
          public void Save()

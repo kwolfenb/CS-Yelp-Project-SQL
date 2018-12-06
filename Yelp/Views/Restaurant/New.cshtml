@@ -1,3 +1,4 @@
+@using Yelp.Models;
 @{
   Layout = "_Layout";
 }
@@ -24,13 +25,11 @@
 
             <div class="col col-md-3">
             <select name="restaurantCuisine">
-                <option class="dropdown-item" name="restaurantCuisine" value=1>Japanese</option>
-                <option class="dropdown-item" name="restaurantCuisine" value=2>Sports Bar</option>
-                <option class="dropdown-item" name="restaurantCuisine" value=3>Thai</option>
-                <option class="dropdown-item" name="restaurantCuisine" value=4>American</option>
-                <option class="dropdown-item" name="restaurantCuisine" value=5>Mexican</option>
-                <option class="dropdown-item" name="restaurantCuisine" value=6>Italian</option>
-                <option class="dropdown-item" name="restaurantCuisine" value=7>Other</option>
+            @foreach(Cuisine cuisine in @Model)
+            {
+                <option class="dropdown-item" name="restaurantCuisine" value=@cuisine.GetId()>@cuisine.GetName()</option>
+            }
+
             </select>
             </div> 
             <br>
@@ -39,6 +38,7 @@
 
         <button class="btn btn-primary btn-lg" type="submit">Add</button>
         <br>
+            <h4>Don't see the right cuisine?<a href='/cuisine/new'> Click here</a> to add a new one.</h4>
             <h3><a href='/'>Return to Main Page</a></h3>
         </form>
     </div>
